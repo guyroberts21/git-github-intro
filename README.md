@@ -1,6 +1,6 @@
-# Git & GitHub: A Safety Net for Collaborative Work
+## Git & GitHub: A Safety Net for Collaborative Work
 
-A 30-minute introduction to Git and GitHub for technical and non-technical audiences.
+Notes and slides for an introduction to using Git and GitHub. 
 
 **Live slides:** published with GitHub Pages (see the repository's website link).
 
@@ -9,5 +9,3 @@ A 30-minute introduction to Git and GitHub for technical and non-technical audie
 - `F` for full screen
 - Add `#5` to the address to open slide 5
 - Print to PDF from your browser to get one slide per page
-
-Everything is in `index.html`: plain HTML and CSS, no build step.
