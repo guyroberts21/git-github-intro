@@ -37,10 +37,10 @@ th,td{text-align:left}
 <div id="stage"><main id="deck" aria-label="Slides">
 %%SLIDES%%
 </main></div>
-<div id="ui"><button id="prev" aria-label="Previous slide">&larr;</button><span id="count"></span><button id="next" aria-label="Next slide">&rarr;</button><button id="full" aria-label="Full screen">Full screen</button></div>
+<div id="ui"><button id="ui-prev" aria-label="Previous slide">&larr;</button><span id="ui-count"></span><button id="ui-next" aria-label="Next slide">&rarr;</button><button id="ui-full" aria-label="Full screen">Full screen</button></div>
 <script>
 (function(){
-  var deck=document.getElementById('deck'),slides=[].slice.call(deck.children),i=0,count=document.getElementById('count');
+  var deck=document.getElementById('deck'),slides=[].slice.call(deck.children),i=0,count=document.getElementById('ui-count');
   function fit(){var s=Math.min(innerWidth/1920,innerHeight/1080);deck.style.transform='scale('+s+')';deck.style.margin=((1080*s-1080)/2)+'px '+((1920*s-1920)/2)+'px';}
   function show(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach(function(s,k){s.classList.toggle('active',k===i)});count.textContent=(i+1)+' / '+slides.length;history.replaceState(null,'','#'+(i+1));}
   function go(d){show(i+d)}
@@ -53,9 +53,9 @@ th,td{text-align:left}
     else if(e.key==='f'||e.key==='F')toggleFull();
   });
   function toggleFull(){if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}
-  document.getElementById('prev').onclick=function(){go(-1)};
-  document.getElementById('next').onclick=function(){go(1)};
-  document.getElementById('full').onclick=toggleFull;
+  document.getElementById('ui-prev').onclick=function(){go(-1)};
+  document.getElementById('ui-next').onclick=function(){go(1)};
+  document.getElementById('ui-full').onclick=toggleFull;
   var x0=null;addEventListener('touchstart',function(e){x0=e.touches[0].clientX});
   addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50)go(dx<0?1:-1);x0=null});
 })();

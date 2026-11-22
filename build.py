@@ -7,6 +7,7 @@ import pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent
 DEFAULT_FOOT = "Git & GitHub · Introduction"
+RESERVED_IDS = {"stage", "deck", "ui"}  # element ids used by template.html (plus anything starting "ui-")
 
 ICONS = {
     "Book": '<path d="M4 5v15a2 2 0 0 1 2-2h14V3H6a2 2 0 0 0-2 2z"/><path d="M8 7h8M8 11h8"/>',
@@ -254,6 +255,14 @@ def render(slide):
 def main():
     try:
         slides = parse((ROOT / "slides.md").read_text(encoding="utf-8"))
+        seen = set()
+        for s in slides:
+            sid = s["meta"]["id"]
+            if sid in RESERVED_IDS or sid.startswith("ui-"):
+                raise SlideError(f"Slide id '{sid}' is used by the page itself. Pick another id.")
+            if sid in seen:
+                raise SlideError(f"Two slides share the id '{sid}'. Each id must be unique.")
+            seen.add(sid)
         rendered = [render(s) for s in slides]
     except SlideError as e:
         sys.exit(f"Error in slides.md: {e}")
