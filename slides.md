@@ -233,10 +233,13 @@ eyebrow: For AI-assisted developers
 title: To explore
 
 ### Automatic tests
-GitHub Actions runs your tests whenever someone proposes a change - it may be possible to do this for Wordpress Plugins...!
+GitHub Actions runs your tests whenever someone proposes a change (e.g. custom WP plugins)
 
 ### Secret scanning
 Blocks passwords and API keys before upload.
+
+### Dependabot
+Spots outdated or vulnerable libraries and opens a pull request to update them.
 
 ### AI coding agents
 Copilot, Claude, Cursor and others can take an issue and hand back a pull request for you to review.
@@ -251,4 +254,5 @@ foot: Thank you · [Your name / contact]
 
 ### Go deeper (optional)
 Recorded technical session with a live demo...
+
 
