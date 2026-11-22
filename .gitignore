@@ -1,3 +1,5 @@
 _site/
 __pycache__/
 .DS_Store
+speaker-notes.md
+demo-notes.md

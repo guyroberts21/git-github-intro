@@ -173,7 +173,8 @@ def render(slide):
     elif layout in ("cards", "numbered", "grid"):
         _, secs = sections(lines)
         cls = {"cards": "cards", "numbered": "cards four", "grid": "grid"}[layout]
-        cards = [card(s, i + 1 if layout == "numbered" else None) for i, s in enumerate(secs)]
+        start = int(m.get("start", 1))
+        cards = [card(s, start + i if layout == "numbered" else None) for i, s in enumerate(secs)]
         parts = [eyebrow, h2, f'<div class="{cls}">', *cards, "</div>"]
 
     elif layout == "split":
@@ -221,8 +222,8 @@ def render(slide):
     elif layout == "demo":
         items = [f"<li>{esc(x)}</li>" for x in numbered(lines)]
         note = paragraph(lines)
-        parts = [eyebrow, f'<h1 style="width:1500px">{esc(title)}</h1>',
-                 '<ol class="demo-list">', *items, "</ol>",
+        steps = ['<ol class="demo-list">', *items, "</ol>"] if items else []
+        parts = [eyebrow, f'<h1 style="width:1500px">{esc(title)}</h1>', *steps,
                  f'<p style="margin-top:40px;font-weight:600">{esc(note)}</p>']
 
     elif layout == "prompts":

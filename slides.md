@@ -4,14 +4,14 @@ Edit the wording below, save, and the slides rebuild (automatically on GitHub, o
 
 - Slides are separated by a line containing only ---
 - Each slide starts with a few "key: value" lines (id, layout, theme, eyebrow, title), then a blank line, then the content.
-- "Notes:" starts the speaker notes. They are never shown on the published page.
+- Optional: "Notes:" starts speaker notes (never shown on the published page). Personal notes live in speaker-notes.md, which is git-ignored.
 - Placeholders like [Your name] are reported by the build so you don't forget to fill them in.
 
 LAYOUTS (keep the layout line as it is; just change the words)
   cover     title + one paragraph
   split     "### Files" and "### Pains" with bullet lists
   cards     "### Heading" blocks, optional "icon:" or "tag:" line under a heading
-  numbered  like cards, with 01 02 03 04 numbers added automatically
+  numbered  like cards, with 01 02 03 04 numbers added automatically ("start: 5" begins at 05)
   grid      like cards, in a 2x2 grid
   table     a markdown table, "widths:" sets the column split
   flow      numbered list: "1. Step title | short description"
@@ -28,12 +28,10 @@ id: cover
 layout: cover
 theme: dark
 eyebrow: Introduction · 30 minutes
-title: Git & GitHub: a safety net for collaborative work
-meta: [Your name] · [Date]
+title: Git & GitHub: a system for collaborative work
+meta: Guy Roberts · Wed 25th Nov
 
-What they are, why they matter, and how anyone on the team can use them. No coding experience needed.
-
-Notes: Timing: 0:00–1:00. Welcome everyone and set expectations: this session is for everyone, technical or not. We will use plain English and a live demo in the browser, with no terminal. A separate recorded session goes deeper for technical people. Ask the audience to keep their questions for the chat or the Q&A near the end.
+What they are, why they matter, and how to use. No coding experience needed.
 
 ---
 id: familiar
@@ -46,22 +44,20 @@ title: Sound familiar?
 - Report_final.docx
 - Report_final_v2.docx
 - Report_final_v2_FINAL.docx
-- Report_final_v2_FINAL_JM-edits.docx
-- Report_final_v2_FINAL_JM-edits_USE-THIS-ONE.docx
+- Report_final_v2_FINAL_July-edits.docx
+- Report_final_v2_FINAL_July-edits_USE-THIS-ONE.docx
 
 ### Pains
 - Whose changes are in this one?
 - Did my edit get overwritten?
 - Which version is the real one?
 
-Notes: Timing: 1:00–3:00. Start with the relatable pain. Ask: has anyone ever had a file like this? The same thing happens with AI-generated code, only faster: an assistant can change ten files in a minute, and without history it is hard to know what changed or how to go back. Keep this light and quick.
-
 ---
 id: want
 layout: cards
 theme: dark2
 eyebrow: What we want instead
-title: One shared history, with a safety net
+title: A shared history, with a safety net
 
 ### Track
 icon: Book
@@ -74,8 +70,6 @@ Many people can work at once without overwriting each other.
 ### Undo
 icon: Clock
 Go back to any earlier version, at any time.
-
-Notes: Timing: 3:00 (end of the opening). These three ideas are the whole value of version control. Everything else in the session is a way of getting these three things. For the AI-savvy audience: this is exactly what you want around AI-written code. You can let the assistant try things because you can always see what it did and roll it back.
 
 ---
 id: gitgithub
@@ -92,19 +86,17 @@ The tool that records every change to your files, so you can see what changed an
 tag: Online
 A shared home for that history, with reviews, task tracking and project boards for working together.
 
-> Think of it as Track Changes for any kind of file, plus a shared space to review and agree changes.
-
-Notes: Timing: 3:00–5:00. Keep the distinction simple. Git is the engine that records history. GitHub is the website where that history lives and where people collaborate. People often say "Git" when they mean either. Most of what we use today happens on GitHub, in the browser.
+> In the same way that email exists independently of Gmail. Gmail is just the service built on top of email.
 
 ---
 id: concepts
 layout: numbered
 theme: dark
 eyebrow: Core ideas
-title: Four ideas cover most of it
+title: Common Actions (1/2)
 
 ### Repository
-A project folder that remembers its whole history.
+A project folder that records its whole history.
 
 ### Commit
 A saved snapshot, with a short note saying what changed.
@@ -115,26 +107,25 @@ A safe copy where you can try changes without affecting the original.
 ### Merge
 Bringing finished changes back into the main version.
 
-Notes: Timing: 5:00–7:00. Walk through the four ideas with one analogy each. Repository: a project folder with a memory. Commit: a save point with a note, like a labelled snapshot. Branch: a safe copy to experiment in, which is the single most useful idea for anyone working with AI. Let the assistant try things on a branch and the main version stays safe. Merge: combining the work once you are happy.
-
 ---
-id: jargon
-layout: table
-theme: light
-eyebrow: Cheat sheet
-title: The jargon translator
-widths: 32/68
+id: concepts2
+layout: numbered
+theme: dark
+start: 5
+eyebrow: Core ideas
+title: Common Actions (2/2)
 
-| Term | In plain English |
-|---|---|
-| Repository (repo) | A project folder with its full history |
-| Commit | A saved snapshot with a note |
-| Branch | A safe copy for trying out changes |
-| Pull request | A proposal: “please review my changes” |
-| Merge | Combining approved changes back in |
-| Issue | A tracked task, bug or idea |
+### Issue
+A tracked task, bug or idea, so nothing gets lost in an email thread.
 
-Notes: Timing: 7:00–8:00. This is the slide people will screenshot, and it becomes the one-page glossary at the end. Do not read every row. Pull request is the one to dwell on: despite the name it is simply a proposal to add your changes, with a place for discussion and review. It is the heart of good practice.
+### Pull request
+A proposal: “please review my changes before they go in.”
+
+### Review
+Others read the changes, leave comments, and approve them.
+
+### Diff
+The before-and-after view that highlights exactly what changed.
 
 ---
 id: flow
@@ -151,24 +142,14 @@ title: A change, from start to finish
 
 > The main version stays untouched until the very last step.
 
-Notes: Timing: 8:00–10:00. This is the picture to keep in mind during the demo. Point at each step in order. The key message: nothing reaches the main version until somebody has looked at it. That one habit is what makes collaborative work, with people or with AI, safe.
-
 ---
 id: demo
 layout: demo
 theme: mint
-eyebrow: Live demo · about 10 minutes
-title: GitHub in the browser
+eyebrow: Live demo
+title: Let's see it in action
 
-1. Browse a repository and read its history
-2. Open an issue to describe a task
-3. Edit a file, saving it on a new branch
-4. Open a pull request
-5. Review the changes, then merge
-
-No terminal and no installs, just a web browser.
-
-Notes: Timing: 10:00–20:00 (the demo). Use the prepared sandbox repository with a ready-made issue and a document to edit. Keep every step visible: show the history first so people see the "memory", then make a one-line change, then show the pull request page with the highlighted differences. Backup plan: a short screen recording of the same flow in case the connection fails.
+Over to GitHub, in the browser.
 
 ---
 id: whyai
@@ -189,14 +170,12 @@ Let the AI try things on a branch. The working version stays untouched.
 icon: Verified
 You see every change side by side before anything is accepted.
 
-Notes: Timing: 20:00–21:30. This is the bridge for the technical audience, who are experienced with AI but new to Git. The question they will recognise: how do I trust what the AI produced? Answer: you do not have to trust it blindly. A branch contains the damage, the history shows what changed, and the pull request is the moment where you or a colleague check the work before it goes live.
-
 ---
 id: habits
 layout: table
 theme: light
 eyebrow: Good practice
-title: Habits that make products reliable
+title: Useful habits to adopt
 widths: 46/54
 
 | Habit | Why it helps |
@@ -205,10 +184,8 @@ widths: 46/54
 | Keep changes small | Easier to review, test and undo |
 | Write a clear description | Reviewers see what changed and why |
 | Run tests automatically | Problems are caught before merging |
-| Get a review before merging | A second pair of eyes, human or AI |
+| Get a review before merging | A second pair of eyes, human (or AI) |
 | Protect the main branch | Nothing merges without passing checks |
-
-Notes: Timing: 21:30–23:00. These six habits are the practical takeaway for anyone building software, including with AI. If people remember only one: one task, one branch, one pull request. Small, reviewable changes with automatic tests are what turn a quick AI prototype into a product people can rely on.
 
 ---
 id: beyond
@@ -229,14 +206,12 @@ Edit pages in the browser and publish via a pull request.
 ### Planning and tracking
 Issues and boards keep tasks, owners and status together.
 
-Notes: Timing: 23:00–24:00. For the non-technical audience this is the reassurance: anything made of text can live on GitHub. Many teams run their documentation, policies and websites this way, because the review step gives them an approval trail for free.
-
 ---
 id: tryit
 layout: cards
 theme: light
 eyebrow: Take-away
-title: Three things to try this week
+title: Things to try this week
 
 ### Publish a web page
 icon: Globe
@@ -250,43 +225,21 @@ Edit a file in the browser, open a pull request and watch the review flow.
 icon: Activity
 Turn tasks into issues and organise them on a project board.
 
-Notes: Timing: 24:00–25:00. Make this the "I could try that" moment for the non-technical audience. All three can be done in a browser with a free GitHub account, no installation. The sandbox repository in the next steps is the safe place to practise the second one.
-
 ---
 id: safeguards
 layout: grid
 theme: dark2
-eyebrow: For AI-assisted builders
-title: Safeguards worth switching on
+eyebrow: For AI-assisted developers
+title: To explore
 
 ### Automatic tests
-GitHub Actions runs your tests whenever someone proposes a change.
-
-### Protected main branch
-Nothing merges without a review and passing checks.
+GitHub Actions runs your tests whenever someone proposes a change - it may be possible to do this for Wordpress Plugins...!
 
 ### Secret scanning
-Blocks passwords and API keys before upload. Free on public repos.
+Blocks passwords and API keys before upload.
 
-### Copilot coding agent
-Assign an issue and it opens a pull request for you to review.
-
-Notes: Timing: 25:00–27:00. This is the "new feature to be interested in" moment for the technical audience. Pick two to dwell on. Protected branches plus automatic tests mean AI-written changes cannot reach the main version without passing checks and a review. Secret scanning matters because AI-generated code sometimes includes keys and passwords, and push protection blocks them before they are uploaded (free on public repositories; private repositories need the paid add-on). The Copilot coding agent turns an issue into a pull request, which you review like any colleague’s work. Also worth a mention: Codespaces gives a ready-to-use coding environment in the browser, with a monthly free allowance on personal accounts, so nothing needs installing.
-
----
-id: yourturn
-layout: prompts
-theme: light
-eyebrow: Your turn
-title: Where could this help your team?
-
-Put one idea in the chat. For example:
-
-- A document that exists in too many versions
-- A process that needs sign-off before it changes
-- Something several people edit at once
-
-Notes: Timing: 27:00–29:00. Invite answers in the chat and read out two or three. Link each one back to the idea it fits: tracking, review, or undo. This also tells you what to cover in the follow-up session. Leave a minute for questions.
+### AI coding agents
+Copilot, Claude, Cursor and others can take an issue and hand back a pull request for you to review.
 
 ---
 id: next
@@ -296,13 +249,6 @@ eyebrow: Next steps
 title: Keep going
 foot: Thank you · [Your name / contact]
 
-### Try it yourself
-Practise in the sandbox repository: [sandbox repo link]
-
-### Keep the glossary
-A one-page jargon translator: [glossary link]
-
 ### Go deeper (optional)
-Recorded technical session with a live demo: [recording link or date]
+Recorded technical session with a live demo...
 
-Notes: Timing: 29:00–30:00. Finish with three clear actions. Everyone can do the first two. The third is for people who want to see Git in action with AI assistance. Thank the audience and share the links in the chat before closing.
